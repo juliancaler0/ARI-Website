@@ -1,0 +1,17 @@
+.App {
+  text-align: left;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
