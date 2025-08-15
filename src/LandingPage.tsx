@@ -37,19 +37,22 @@ export default function LandingPage() {
               <a href="#about" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
                 ABOUT
               </a>
-              <a href="#products" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
-                PRODUCTS
+              <a href="#projects" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
+                PROJECTS
               </a>
               <a href="#values" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
                 VALUES
               </a>
-              <a href="#vendors" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
-                VENDORS
-              </a>
               <a href="#contact" className="text-gray-800 font-medium transition-colors" style={{ textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = '#4A5568'} onMouseLeave={(e) => e.currentTarget.style.color = '#2D3748'}>
                 CONTACT
               </a>
-              <Button className="text-white px-6 py-2 rounded-full" style={{ backgroundColor: '#004c97' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}>
+              <Button 
+                className="text-white px-6 py-2 rounded-full" 
+                style={{ backgroundColor: '#004c97' }} 
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} 
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 INQUIRE
               </Button>
             </nav>
@@ -89,11 +92,11 @@ export default function LandingPage() {
               ABOUT
             </a>
             <a
-              href="#products"
+              href="#projects"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              PRODUCTS
+              PROJECTS
             </a>
             <a
               href="#values"
@@ -103,13 +106,6 @@ export default function LandingPage() {
               VALUES
             </a>
             <a
-              href="#vendors"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              VENDORS
-            </a>
-            <a
               href="#contact"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
               onClick={() => setIsMobileMenuOpen(false)}
@@ -117,8 +113,14 @@ export default function LandingPage() {
               CONTACT
             </a>
             <Button 
-              className="w-full mt-2 text-white" style={{ backgroundColor: '#004c97' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}
-              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full mt-2 text-white" 
+              style={{ backgroundColor: '#004c97' }} 
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} 
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}
+              onClick={() => {
+                setIsMobileMenuOpen(false)
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+              }}
             >
               INQUIRE
             </Button>
@@ -158,7 +160,13 @@ export default function LandingPage() {
                 towers to infrastructure projects, we provide the structural backbone<br />
                 that keeps communities strong and connected.
               </p>
-              <Button className="text-white px-8 py-3 text-lg rounded" style={{ backgroundColor: '#004c97' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}>
+              <Button 
+                className="text-white px-8 py-3 text-lg rounded" 
+                style={{ backgroundColor: '#004c97' }} 
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} 
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Discover Our Capabilities
               </Button>
             </div>
@@ -231,13 +239,12 @@ export default function LandingPage() {
         </section>
 
         {/* Example Image Section */}
-        <section id="products" className="py-0">
+        <section id="projects" className="py-0">
           <div className="w-full h-64 md:h-96 bg-gray-200 overflow-hidden">
             <img
               src="/images/divider.png"
               alt="Steel construction framework"
               className="w-full h-full object-cover"
-              style={{ transform: 'rotate(2deg)' }}
             />
           </div>
         </section>
