@@ -12,7 +12,7 @@ interface ImageGalleryProps {
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ className }) => {
-  const [images, setImages] = useState<GalleryImage[]>([
+  const [images] = useState<GalleryImage[]>([
     {
       id: '1',
       url: '/images/Unknown-1.png',
