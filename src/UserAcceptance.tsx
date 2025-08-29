@@ -4,22 +4,52 @@ import { Input } from './components/ui/input.tsx';
 
 const UserAcceptance: React.FC = () => {
   const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showSmsTerms, setShowSmsTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const handleAccept = () => {
-    if (name.trim() && isChecked) {
+    if (name.trim() && phoneNumber.trim() && isChecked) {
+      const consentData = {
+        name: name.trim(),
+        phoneNumber: phoneNumber.trim(),
+        timestamp: new Date().toISOString(),
+        consentGiven: true
+      };
+      
+      // Store consent data (you'll need to implement actual storage/API call)
+      console.log('Consent recorded:', consentData);
+      localStorage.setItem('smsConsent', JSON.stringify(consentData));
+      
       setShowSuccess(true);
       setTimeout(() => {
         window.location.href = 'https://associatedrebar.com/';
       }, 2500);
     } else {
-      alert('Please enter your name and check the consent box to continue.');
+      alert('Please fill in all required fields and check the consent box to continue.');
     }
   };
 
+  const formatPhoneNumber = (value: string) => {
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedNumber = formatPhoneNumber(e.target.value);
+    setPhoneNumber(formattedNumber);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
       {showSuccess && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-100 animate-pulse">
@@ -37,71 +67,187 @@ const UserAcceptance: React.FC = () => {
         </div>
       )}
       
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">User Consent Required</h1>
-          <p className="text-gray-600">Please read and accept the following terms</p>
-        </div>
-        
-        <div className="bg-gray-50 rounded-lg p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Proof of Consent</h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            You must provide proof of consent to receive messaging collected from the consumer, 
-            which can be a link to a website where the consumer gave consent, a hosted page file 
-            that demonstrates a screenshot, or a link to a document that tells the story of the opt-in.
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            Multiple URLs are allowed. Any attestations must be reachable and accessible to the public.
-          </p>
-        </div>
-
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
-          <p className="text-sm text-blue-800">
-            <strong>Important:</strong> By clicking "I Accept" below, you acknowledge that you have read, 
-            understood, and agree to provide proper proof of consent for all messaging activities.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name *
-            </label>
-            <Input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
+      <div className="max-w-4xl mx-auto">
+        {/* Main Opt-in/CTA Section */}
+        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">SMS Dispatch Alerts Enrollment</h1>
+            <p className="text-gray-600">Opt-in to receive job dispatch notifications</p>
+          </div>
+          
+          <div className="bg-blue-50 rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Program Information</h2>
+            <div className="space-y-2 text-gray-700">
+              <p><strong>Program:</strong> Associated Rebar Dispatch Alerts</p>
+              <p><strong>Purpose:</strong> Send job dispatch details, schedule updates, and worksite communications to employees.</p>
+              <p><strong>Message Frequency:</strong> Varies by schedule.</p>
+              <p><strong>Cost:</strong> Msg & data rates may apply.</p>
+              <p><strong>Opt-Out:</strong> Reply STOP to cancel at any time.</p>
+              <p><strong>Help:</strong> Reply HELP or contact dispatch@associatedrebar.com / (831) 262-7948.</p>
+              <p>
+                <strong>Privacy & Terms:</strong> See our{' '}
+                <button 
+                  onClick={() => setShowPrivacy(!showPrivacy)}
+                  className="text-blue-600 hover:underline"
+                >
+                  Privacy Policy
+                </button>{' '}
+                and{' '}
+                <button 
+                  onClick={() => setShowSmsTerms(!showSmsTerms)}
+                  className="text-blue-600 hover:underline"
+                >
+                  SMS Terms
+                </button>
+                .
+              </p>
+            </div>
           </div>
 
-          <label className="flex items-start space-x-3 cursor-pointer">
-            <input 
-              type="checkbox" 
-              id="consent-checkbox"
-              checked={isChecked}
-              onChange={(e) => setIsChecked(e.target.checked)}
-              className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-            />
-            <span className="text-gray-700 text-sm">
-              I understand and agree to provide proof of consent for messaging collected from consumers. 
-              I acknowledge that all attestations must be publicly accessible.
-            </span>
-          </label>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                Full Name *
+              </label>
+              <Input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your full name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                Phone Number *
+              </label>
+              <Input
+                type="tel"
+                id="phone"
+                value={phoneNumber}
+                onChange={handlePhoneChange}
+                placeholder="(XXX) XXX-XXXX"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                maxLength={14}
+                required
+              />
+            </div>
+
+            <label className="flex items-start space-x-3 cursor-pointer">
+              <input 
+                type="checkbox" 
+                id="consent-checkbox"
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <span className="text-gray-700 text-sm">
+                I agree to receive text messages for job dispatches and worksite communications from 
+                Associated Rebar at the number I provide.
+              </span>
+            </label>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <Button 
+              onClick={handleAccept}
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!name.trim() || !phoneNumber.trim() || !isChecked}
+            >
+              I Accept
+            </Button>
+          </div>
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <Button 
-            onClick={handleAccept}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={!name.trim() || !isChecked}
-          >
-            I Accept
-          </Button>
-        </div>
+        {/* SMS Terms Section */}
+        {showSmsTerms && (
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Associated Rebar Dispatch Alerts — SMS Terms</h2>
+              <button 
+                onClick={() => setShowSmsTerms(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div className="prose max-w-none text-gray-700">
+              <p className="mb-4">
+                By opting in, you agree to receive text messages related to job dispatches, scheduling, 
+                and worksite communications from Associated Rebar. Message frequency varies; msg & data 
+                rates may apply.
+              </p>
+              
+              <p className="mb-4">
+                <strong>Opt-Out:</strong> Reply STOP to cancel. <strong>Help:</strong> Reply HELP or 
+                contact dispatch@associatedrebar.com / (831) 262-7948.
+              </p>
+              
+              <p className="mb-4">
+                Supported carriers are not liable for delayed or undelivered messages.
+              </p>
+              
+              <p className="mb-4">
+                For questions or to update your number, contact HR or email dispatch@associatedrebar.com.
+              </p>
+              
+              <p>
+                See our{' '}
+                <button 
+                  onClick={() => {
+                    setShowPrivacy(true);
+                    setShowSmsTerms(false);
+                  }}
+                  className="text-blue-600 hover:underline"
+                >
+                  Privacy Policy
+                </button>
+                .
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Privacy Policy Section */}
+        {showPrivacy && (
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">SMS Privacy Notice</h2>
+              <button 
+                onClick={() => setShowPrivacy(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div className="prose max-w-none text-gray-700">
+              <p className="mb-4">
+                We collect your phone number and message content solely to provide job dispatch and 
+                worksite communications. We do not sell your personal information. We may share limited 
+                data with our SMS providers to deliver messages. We retain SMS-related data only as long 
+                as necessary for operational and legal purposes.
+              </p>
+              
+              <p className="mb-4">
+                You can opt out of SMS at any time by replying STOP. For help, reply HELP or contact 
+                dispatch@associatedrebar.com / (831) 262-7948.
+              </p>
+              
+              <p>
+                For more about how we handle personal information, see the rest of this Privacy Policy.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
