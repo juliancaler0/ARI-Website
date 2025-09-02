@@ -236,7 +236,7 @@ const PrivacyPolicy: React.FC = () => {
           <p className="mb-2"><strong>Associated Rebar Inc.</strong></p>
           <p className="mb-1">Email: dispatch@associatedrebar.com</p>
           <p className="mb-1">Phone: (831) 262-7948</p>
-          <p className="mb-1">Address: 2570 Vista Verde Dr, Aptos, CA 95003</p>
+          <p className="mb-1">Address: 1095 Madison Ln, Salinas, CA 93907</p>
           <p>Website: https://associatedrebar.com</p>
         </div>
       </section>

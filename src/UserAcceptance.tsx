@@ -99,7 +99,7 @@ const UserAcceptance: React.FC = () => {
                   onClick={() => setShowSmsTerms(!showSmsTerms)}
                   className="text-blue-600 hover:underline"
                 >
-                  SMS Terms
+                  Terms and Conditions
                 </button>
                 .
               </p>
@@ -148,8 +148,8 @@ const UserAcceptance: React.FC = () => {
               />
               <span className="text-gray-700 text-sm">
                 I agree to receive text messages for job dispatches and worksite communications from 
-                Associated Rebar at the number I provide. I have read and agree to the SMS Terms and 
-                Privacy Policy.
+                Associated Rebar at the number I provide. I have read and agree to the Terms and Conditions 
+                and Privacy Policy.
               </span>
             </label>
           </div>
@@ -169,7 +169,7 @@ const UserAcceptance: React.FC = () => {
         {showSmsTerms && (
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8 max-h-[80vh] overflow-y-auto">
             <div className="flex justify-between items-start mb-6 sticky top-0 bg-white pb-4 border-b">
-              <h2 className="text-2xl font-bold text-gray-900">SMS Terms and Conditions</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Terms and Conditions</h2>
               <button 
                 onClick={() => setShowSmsTerms(false)}
                 className="text-gray-500 hover:text-gray-700 ml-4"

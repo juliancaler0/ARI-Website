@@ -3,7 +3,7 @@ import React from 'react';
 const SmsTerms: React.FC = () => {
   return (
     <div className="prose max-w-none text-gray-700">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">SMS Terms and Conditions</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">Terms and Conditions</h1>
       
       <p className="mb-4 text-sm text-gray-600">
         <strong>Effective Date:</strong> January 2, 2025<br />
@@ -232,7 +232,7 @@ const SmsTerms: React.FC = () => {
           <p className="mb-1">SMS Program Administrator</p>
           <p className="mb-1">Email: dispatch@associatedrebar.com</p>
           <p className="mb-1">Phone: (831) 262-7948</p>
-          <p className="mb-1">Address: 2570 Vista Verde Dr, Aptos, CA 95003</p>
+          <p className="mb-1">Address: 1095 Madison Ln, Salinas, CA 93907</p>
           <p>Website: https://associatedrebar.com</p>
         </div>
       </section>
