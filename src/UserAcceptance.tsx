@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from './components/ui/button.tsx';
 import { Input } from './components/ui/input.tsx';
+import PrivacyPolicy from './components/PrivacyPolicy.tsx';
+import SmsTerms from './components/SmsTerms.tsx';
 
 const UserAcceptance: React.FC = () => {
   const [name, setName] = useState('');
@@ -146,7 +148,8 @@ const UserAcceptance: React.FC = () => {
               />
               <span className="text-gray-700 text-sm">
                 I agree to receive text messages for job dispatches and worksite communications from 
-                Associated Rebar at the number I provide.
+                Associated Rebar at the number I provide. I have read and agree to the SMS Terms and 
+                Privacy Policy.
               </span>
             </label>
           </div>
@@ -164,88 +167,37 @@ const UserAcceptance: React.FC = () => {
 
         {/* SMS Terms Section */}
         {showSmsTerms && (
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
-            <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Associated Rebar Dispatch Alerts — SMS Terms</h2>
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8 max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-6 sticky top-0 bg-white pb-4 border-b">
+              <h2 className="text-2xl font-bold text-gray-900">SMS Terms and Conditions</h2>
               <button 
                 onClick={() => setShowSmsTerms(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 ml-4"
               >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
             </div>
-            
-            <div className="prose max-w-none text-gray-700">
-              <p className="mb-4">
-                By opting in, you agree to receive text messages related to job dispatches, scheduling, 
-                and worksite communications from Associated Rebar. Message frequency varies; msg & data 
-                rates may apply.
-              </p>
-              
-              <p className="mb-4">
-                <strong>Opt-Out:</strong> Reply STOP to cancel. <strong>Help:</strong> Reply HELP or 
-                contact dispatch@associatedrebar.com / (831) 262-7948.
-              </p>
-              
-              <p className="mb-4">
-                Supported carriers are not liable for delayed or undelivered messages.
-              </p>
-              
-              <p className="mb-4">
-                For questions or to update your number, contact HR or email dispatch@associatedrebar.com.
-              </p>
-              
-              <p>
-                See our{' '}
-                <button 
-                  onClick={() => {
-                    setShowPrivacy(true);
-                    setShowSmsTerms(false);
-                  }}
-                  className="text-blue-600 hover:underline"
-                >
-                  Privacy Policy
-                </button>
-                .
-              </p>
-            </div>
+            <SmsTerms />
           </div>
         )}
 
         {/* Privacy Policy Section */}
         {showPrivacy && (
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
-            <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">SMS Privacy Notice</h2>
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8 max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-6 sticky top-0 bg-white pb-4 border-b">
+              <h2 className="text-2xl font-bold text-gray-900">Privacy Policy</h2>
               <button 
                 onClick={() => setShowPrivacy(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 ml-4"
               >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
             </div>
-            
-            <div className="prose max-w-none text-gray-700">
-              <p className="mb-4">
-                We collect your phone number and message content solely to provide job dispatch and 
-                worksite communications. We do not sell your personal information. We may share limited 
-                data with our SMS providers to deliver messages. We retain SMS-related data only as long 
-                as necessary for operational and legal purposes.
-              </p>
-              
-              <p className="mb-4">
-                You can opt out of SMS at any time by replying STOP. For help, reply HELP or contact 
-                dispatch@associatedrebar.com / (831) 262-7948.
-              </p>
-              
-              <p>
-                For more about how we handle personal information, see the rest of this Privacy Policy.
-              </p>
-            </div>
+            <PrivacyPolicy />
           </div>
         )}
       </div>
