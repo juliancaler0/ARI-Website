@@ -122,7 +122,8 @@ const PrivacyPolicy: React.FC = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">5. Information Sharing and Disclosure</h2>
         <p className="mb-4">
-          We do not sell, trade, or rent your personal information to third parties. We may share 
+          We do not sell, trade, or rent your personal information to third parties. Mobile information 
+          will not be shared with third parties for marketing/promotional purposes. We may share 
           your information in the following circumstances:
         </p>
         <ul className="list-disc pl-6 mb-4">

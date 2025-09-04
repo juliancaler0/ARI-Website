@@ -4,7 +4,9 @@
       "Bash(git config:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src\\components/**)",
+      "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)"
     ],
     "deny": [],
     "ask": [],
