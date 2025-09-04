@@ -1,5 +1,5 @@
 import React from 'react';
-import SmsTerms from '../components/SmsTerms';
+import SmsTerms from '../components/SmsTerms.tsx';
 
 const TermsPage: React.FC = () => {
   return (
