@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, Grid3X3 } from 'lucide-react';
-import { getProjectImages } from './ImageGallery';
+import { getProjectImages } from './ImageGallery.tsx';
 
 interface GalleryModalProps {
   isOpen: boolean;
