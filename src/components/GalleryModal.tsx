@@ -110,12 +110,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose }) => {
                     alt={image.alt}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm font-medium capitalize truncate">
-                      {image.alt}
-                    </p>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               ))}
             </div>
@@ -140,11 +135,8 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose }) => {
             <img
               src={images[selectedIndex].url}
               alt={images[selectedIndex].alt}
-              className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
             />
-            <p className="mt-4 text-white text-lg font-medium capitalize">
-              {images[selectedIndex].alt}
-            </p>
           </div>
 
           {/* Navigation - Next */}

@@ -70,11 +70,11 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, onClose, onNa
     >
       {/* Close Button */}
       <button
-        onClick={onClose}
-        className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-10"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        className="absolute top-6 right-6 text-white hover:text-gray-300 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors z-10 border border-white/30"
         aria-label="Close lightbox"
       >
-        <X size={28} />
+        <X size={32} />
       </button>
 
       {/* Navigation - Previous */}

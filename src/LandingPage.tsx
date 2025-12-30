@@ -376,8 +376,16 @@ export default function LandingPage() {
 
         <footer className="bg-gray-900 text-white py-12">
           <div className="container mx-auto px-4">
-            <div className="text-center">
-              <Linkedin className="mx-auto mb-6 text-white h-8 w-8" />
+            <div className="text-center mb-6">
+              <a
+                href="https://www.linkedin.com/company/associated-rebar-inc./"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-white hover:text-blue-400 transition-colors"
+              >
+                <Linkedin className="h-8 w-8" />
+                <span className="text-lg font-medium">Associated Rebar Inc.</span>
+              </a>
             </div>
             <div className="text-center space-y-4">
               <p className="text-gray-400 text-sm">
