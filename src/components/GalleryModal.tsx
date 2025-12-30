@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Grid3X3 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, LayoutGrid } from 'lucide-react';
 import { getProjectImages } from './ImageGallery.tsx';
 
 interface GalleryModalProps {
@@ -73,7 +73,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose }) => {
                 onClick={backToGrid}
                 className="text-white/70 hover:text-white flex items-center gap-2 transition-colors"
               >
-                <Grid3X3 size={20} />
+                <LayoutGrid size={20} />
                 <span className="text-sm font-medium">Back to Gallery</span>
               </button>
             )}
