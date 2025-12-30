@@ -9,7 +9,9 @@
       "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)",
       "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)",
       "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)",
-      "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)"
+      "Read(/C:\\Users\\JulianCalero\\Desktop\\Projects\\ARI-Website\\src/**)",
+      "Bash(copy \"C:\\\\Users\\\\JulianCalero\\\\Desktop\\\\Projects\\\\ARI-Website\\\\public\\\\images\\\\Unknown-1.png\" \"C:\\\\Users\\\\JulianCalero\\\\Desktop\\\\Projects\\\\ARI-Website\\\\src\\\\assets\\\\projects\"\" && copy \"C:UsersJulianCaleroDesktopProjectsARI-WebsitepublicimagesUnknown-2.png\" \"C:UsersJulianCaleroDesktopProjectsARI-Websitesrcassetsprojects\"\")",
+      "Bash(copy \"C:\\\\Users\\\\JulianCalero\\\\Desktop\\\\Projects\\\\ARI-Website\\\\public\\\\images\\\\Unknown-3.png\" \"C:\\\\Users\\\\JulianCalero\\\\Desktop\\\\Projects\\\\ARI-Website\\\\src\\\\assets\\\\projects\"\")"
     ],
     "deny": [],
     "ask": [],

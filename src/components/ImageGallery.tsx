@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-interface GalleryImage {
-  id: string;
-  url: string;
-  alt: string;
-}
 
 interface ImageGalleryProps {
   className?: string;
 }
 
+// Automatically import all images from the projects folder
+// Just drop your images in src/assets/projects/ and restart the dev server
+const importAll = (r: __WebpackModuleApi.RequireContext) => {
+  return r.keys().map((key) => ({
+    id: key,
+    url: r(key) as string,
+    alt: key.replace('./', '').replace(/\.[^/.]+$/, '').replace(/-/g, ' ')
+  }));
+};
+
 const ImageGallery: React.FC<ImageGalleryProps> = ({ className }) => {
-  const [images] = useState<GalleryImage[]>([
-    {
-      id: '1',
-      url: '/images/Unknown-1.png',
-      alt: 'Construction project showcase'
-    },
-    {
-      id: '2',
-      url: '/images/Unknown-2.png',
-      alt: 'Rebar installation project'
-    },
-    {
-      id: '3',
-      url: '/images/Unknown-3.png',
-      alt: 'Steel framework construction'
+  const images = useMemo(() => {
+    try {
+      const context = require.context('../assets/projects', false, /\.(png|jpe?g|svg|webp|gif)$/i);
+      const allImages = importAll(context);
+
+      // Sort so "Starting Image" comes first
+      return allImages.sort((a, b) => {
+        if (a.id.toLowerCase().includes('starting')) return -1;
+        if (b.id.toLowerCase().includes('starting')) return 1;
+        return 0;
+      });
+    } catch (e) {
+      // Fallback if folder is empty or doesn't exist
+      return [];
     }
-  ]);
+  }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -42,6 +45,16 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ className }) => {
 
   const getPrevIndex = () => (currentIndex - 1 + images.length) % images.length;
   const getNextIndex = () => (currentIndex + 1) % images.length;
+
+  if (images.length === 0) {
+    return (
+      <div className={`space-y-4 ${className}`}>
+        <div className="relative h-96 rounded-lg overflow-hidden shadow-lg bg-gray-200 flex items-center justify-center">
+          <p className="text-gray-500">No project images yet. Add images to src/assets/projects/</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`space-y-4 ${className}`}>
@@ -69,7 +82,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ className }) => {
                 style={{ objectFit: 'contain', width: '100%', height: '100%' }}
               />
             )}
-            
+
             {/* Navigation Arrows */}
             {images.length > 1 && (
               <>
