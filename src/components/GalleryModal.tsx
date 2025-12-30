@@ -63,7 +63,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-gray-900/98 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-md overflow-hidden">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/80 to-transparent">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -95,7 +95,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose }) => {
       {view === 'grid' && (
         <div className="h-full overflow-y-auto pt-20 pb-8">
           <div className="container mx-auto px-4">
-            <p className="text-gray-400 mb-8 text-center">
+            <p className="text-white/90 mb-8 text-center text-lg">
               Explore our portfolio of rebar installation projects across California
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
