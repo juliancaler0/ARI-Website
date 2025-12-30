@@ -3,9 +3,11 @@ import { Button } from "./components/ui/button.tsx";
 import { Linkedin, ChevronDown, MapPin } from "lucide-react";
 import ContactForm from "./components/ContactForm.tsx";
 import ImageGallery from "./components/ImageGallery.tsx";
+import GalleryModal from "./components/GalleryModal.tsx";
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -268,9 +270,26 @@ export default function LandingPage() {
                   our work supports the essential structures that connect and serve 
                   millions of Californians every day.
                 </p>
-                <Button className="text-white px-6 py-3 rounded" style={{ backgroundColor: '#004c97' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}>
-                  OUR VALUES
-                </Button>
+                <div className="flex gap-4">
+                  <Button className="text-white px-6 py-3 rounded" style={{ backgroundColor: '#004c97' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003670'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#004c97'}>
+                    OUR VALUES
+                  </Button>
+                  <Button
+                    className="px-6 py-3 rounded border-2 transition-colors"
+                    style={{ borderColor: '#004c97', color: '#004c97', backgroundColor: 'transparent' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#004c97';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#004c97';
+                    }}
+                    onClick={() => setIsGalleryOpen(true)}
+                  >
+                    OUR WORK
+                  </Button>
+                </div>
               </div>
               <ImageGallery />
             </div>
@@ -374,6 +393,9 @@ export default function LandingPage() {
           </div>
         </footer>
       </main>
+
+      {/* Gallery Modal */}
+      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
     </div>
   );
 }
